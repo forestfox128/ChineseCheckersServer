@@ -12,16 +12,19 @@ public class MainServer {
     private BufferedReader in = null;
     private static PrintWriter out = null;
     private String clientName = "";
-    ServerGUI serverWindow;
+    private ServerGUI serverWindow;
     private ArrayList<String> users = new ArrayList<>();
+    private Board board;
 
 
 
     private MainServer() {
         try {
+
             server = new ServerSocket(9999);
             serverWindow = new ServerGUI();
             serverWindow.startServer();
+
 
 
         }
@@ -53,6 +56,12 @@ public class MainServer {
 
                 clientName = in.readLine();
                 serverWindow.addClient(clientName);
+                board = new Board(6);
+                if(board.checkIfClickOnPlayerPawn(3,3,1) != null && board.checkIfPawnCanBeMoved(4,7)){
+                    board.moveOnBoard(3,3,1,4,7);
+                }
+                else System.out.println("Error!!!");
+
             }
 
             catch (IOException e) {
@@ -75,8 +84,10 @@ public class MainServer {
     }
 
     public static void main(String[] args) {
+
         MainServer server = new MainServer();
         server.listenSocket();
+
     }
 }
 
