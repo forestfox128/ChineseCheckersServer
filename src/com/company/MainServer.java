@@ -15,6 +15,7 @@ public class MainServer {
     private ServerGUI serverWindow;
     private ArrayList<String> users = new ArrayList<>();
     private Board board;
+    private Players player;
 
 
 
@@ -24,10 +25,8 @@ public class MainServer {
             server = new ServerSocket(9999);
             serverWindow = new ServerGUI();
             serverWindow.startServer();
-
-
-
         }
+
         catch (IOException e) {
             System.out.println("Could not listen on port 6666"); System.exit(-1);
         }
@@ -37,6 +36,7 @@ public class MainServer {
 
         try {
             client = server.accept();
+
         } catch (IOException e) {
             System.out.println("Accept failed: 6587");
             System.exit(-1);
@@ -56,6 +56,8 @@ public class MainServer {
 
                 clientName = in.readLine();
                 serverWindow.addClient(clientName);
+
+                //singleton????
                 board = new Board(6);
                 if(board.checkIfClickOnPlayerPawn(3,3,1) != null && board.checkIfPawnCanBeMoved(4,7)){
                     board.moveOnBoard(3,3,1,4,7);

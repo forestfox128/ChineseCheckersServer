@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    public int [][] board = new int[17][13];
+    public int [][] board = new int[34][26];
     private int playersNumber;
     private ArrayList<Pawns> pawnsList = new ArrayList<Pawns>();
     private Pawns pawn;
@@ -18,44 +18,52 @@ public class Board {
 
         if(playersNumber == 6) {
 
-            for (int i = 0; i < 17; i++)
-                for (int j = 0; j < 13; j++) {
-
+            for (int i = 0; i < 34; i++)
+                for (int j = 0; j < 26; j++) {
                     board[i][j] = -1;
 
-                    if (i <= 3 && j <= i) {
+                    if((i == 0 && j == 12) || (i == 1 && (j ==11 || j==13)) || (i == 2 && (j ==10 || j==12 || j==14)) || (i == 3 && (j ==9 || j==11 || j==13 || j==15))){
                         board[i][j] = 1;
                         pawnsList.add(pawn = new Pawns(i,j,1));
                     }
-
-                    if ((i == 4 && j > 8) || (i == 5 && j > 8 && j < 12) || (i == 6 && j > 8 && j < 11) || (i == 7 && j == 9)){
-                        board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,2));                    }
-
-                    if ((i == 4 && j < 4) || (i == 5 && j < 3) || (i == 6 && j < 2) || (i == 7 && j == 0) ){
+                    if((i == 7 && j == 3) || (i == 6 && (j ==2 || j==4)) || (i == 5 && (j ==1 || j==3 || j==5)) || (i == 4 && (j ==0 || j==2 || j==4 || j==6))){
                         board[i][j] = 1;
                         pawnsList.add(pawn = new Pawns(i,j,6));
                     }
-
-                    if ((i == 9 && j == 0) || (i == 10 && j < 2) || (i == 11 && j < 3) || (i == 12 && j < 4)) {
+                    if((i == 9 && j == 3) || (i == 10 && (j ==2 || j==4)) || (i == 11 && (j ==1 || j==3 || j==5)) || (i == 12 && (j ==0 || j==2 || j==4 || j==6))){
                         board[i][j] = 1;
                         pawnsList.add(pawn = new Pawns(i,j,5));
                     }
-
-                    if ((i == 9 && j == 9) || (i == 10 && j > 8 && j < 11) || (i == 11 && j > 8 && j < 12) || (i == 12 && j > 8)) {
-                        board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,3));
-                    }
-
-                    if ((i == 15 && j < 2) || (i == 16 && j == 0) || (i == 14 && j < 3) || (i == 13 && j < 4)){
+                    if((i == 16 && j == 12) || (i == 15 && (j ==11 || j==13)) || (i == 14 && (j ==10 || j==12 || j==14)) || (i == 13 && (j ==9 || j==11 || j==13 || j==15))){
                         board[i][j] = 1;
                         pawnsList.add(pawn = new Pawns(i,j,4));
                     }
+                    if((i == 9 && j == 21) || (i == 10 && (j ==20 || j==22)) || (i == 11 && (j ==19 || j==21 || j==23)) || (i == 12 && (j ==18 || j==20 || j==22 || j==24))){
+                        board[i][j] = 1;
+                        pawnsList.add(pawn = new Pawns(i,j,3));
+                    }
+                    if((i == 7 && j == 21) || (i == 6 && (j ==20 || j==22)) || (i == 5 && (j ==19 || j==21 || j==23)) || (i == 4 && (j ==18 || j==20 || j== 22 || j==24))){
+                        board[i][j] = 1;
+                        pawnsList.add(pawn = new Pawns(i,j,2));
+                    }
 
-                    if (i > 3 && i < 13 && j < 9 && board[i][j] != 1)
+                    else if((i == 4 || i == 12) && j>=8 && j <= 16 && j%2 ==0)
                         board[i][j] = 0;
-
+                    else if((i == 5 || i == 11) && j>=7 && j <= 17 && j%2 !=0)
+                        board[i][j] = 0;
+                    else if((i == 6 || i == 10) && j>=6 && j <= 18 && j%2 ==0)
+                        board[i][j] = 0;
+                    else if((i == 7 || i == 9) && j>=5 && j <= 19 && j%2 !=0)
+                        board[i][j] = 0;
+                    else if(i == 8 && j>=4 && j <= 20 && j%2 ==0)
+                        board[i][j] = 0;
                 }
+
+
+            for (int i = 0; i < 34; i++)
+                for (int j = 0; j < 26; j++)
+                    System.out.println(board[i][j]);
+
         }
 
     }
