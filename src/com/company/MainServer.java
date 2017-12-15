@@ -11,7 +11,7 @@ public class MainServer {
     private Socket client = null;
     private BufferedReader in = null;
     private static PrintWriter out = null;
-    private String clientName = "";
+    private String messageClient = "";
     private ServerGUI serverWindow;
     private ArrayList<String> users = new ArrayList<>();
     private Board board;
@@ -50,19 +50,18 @@ public class MainServer {
             System.exit(-1);
         }
 
-        while (clientName != null) {
+        while (messageClient != null) {
 
             try {
 
-                clientName = in.readLine();
-                serverWindow.addClient(clientName);
+                messageClient = in.readLine();
+//                serverWindow.addClient(messageClient);
+
+                handleInfoFromClient(messageClient);
 
                 //singleton????
-                board = new Board(6);
-                if(board.checkIfClickOnPlayerPawn(3,3,1) != null && board.checkIfPawnCanBeMoved(4,7)){
-                    board.moveOnBoard(3,3,1,4,7);
-                }
-                else System.out.println("Error!!!");
+                //board = new Board(6);
+
 
             }
 
@@ -90,6 +89,25 @@ public class MainServer {
         MainServer server = new MainServer();
         server.listenSocket();
 
+    }
+
+    private void handleInfoFromClient(String messageClient){
+
+        String[] dataArray;
+        dataArray = messageClient.split(":");
+
+        if("startGame".equals(dataArray[0])){
+            board = new Board(6);
+        }
+
+        if("meve".equals(dataArray[0])){
+
+
+            out.println(board.checkPossibleMoves(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3])));
+        }
+
+
+        //checking the action which client expect and return
     }
 }
 

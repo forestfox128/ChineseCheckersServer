@@ -6,8 +6,8 @@ public class Board {
 
     public int [][] board = new int[34][26];
     private int playersNumber;
-    private ArrayList<Pawns> pawnsList = new ArrayList<Pawns>();
-    private Pawns pawn;
+    private ArrayList<Pawn> pawnsList = new ArrayList<Pawn>();
+    private Pawn pawn;
 
     public Board(int playersNumber){
         this.playersNumber = playersNumber;
@@ -24,27 +24,27 @@ public class Board {
 
                     if((i == 0 && j == 12) || (i == 1 && (j ==11 || j==13)) || (i == 2 && (j ==10 || j==12 || j==14)) || (i == 3 && (j ==9 || j==11 || j==13 || j==15))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,1));
+                        pawnsList.add(pawn = new Pawn(i,j,1));
                     }
                     if((i == 7 && j == 3) || (i == 6 && (j ==2 || j==4)) || (i == 5 && (j ==1 || j==3 || j==5)) || (i == 4 && (j ==0 || j==2 || j==4 || j==6))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,6));
+                        pawnsList.add(pawn = new Pawn(i,j,6));
                     }
                     if((i == 9 && j == 3) || (i == 10 && (j ==2 || j==4)) || (i == 11 && (j ==1 || j==3 || j==5)) || (i == 12 && (j ==0 || j==2 || j==4 || j==6))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,5));
+                        pawnsList.add(pawn = new Pawn(i,j,5));
                     }
                     if((i == 16 && j == 12) || (i == 15 && (j ==11 || j==13)) || (i == 14 && (j ==10 || j==12 || j==14)) || (i == 13 && (j ==9 || j==11 || j==13 || j==15))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,4));
+                        pawnsList.add(pawn = new Pawn(i,j,4));
                     }
                     if((i == 9 && j == 21) || (i == 10 && (j ==20 || j==22)) || (i == 11 && (j ==19 || j==21 || j==23)) || (i == 12 && (j ==18 || j==20 || j==22 || j==24))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,3));
+                        pawnsList.add(pawn = new Pawn(i,j,3));
                     }
                     if((i == 7 && j == 21) || (i == 6 && (j ==20 || j==22)) || (i == 5 && (j ==19 || j==21 || j==23)) || (i == 4 && (j ==18 || j==20 || j== 22 || j==24))){
                         board[i][j] = 1;
-                        pawnsList.add(pawn = new Pawns(i,j,2));
+                        pawnsList.add(pawn = new Pawn(i,j,2));
                     }
 
                     else if((i == 4 || i == 12) && j>=8 && j <= 16 && j%2 ==0)
@@ -68,9 +68,9 @@ public class Board {
 
     }
 
-    public Pawns checkIfClickOnPlayerPawn(int x, int y, int playerNumber){
+    public Pawn checkIfClickOnPlayerPawn(int x, int y, int playerNumber){
 
-        for(Pawns p : pawnsList){
+        for(Pawn p : pawnsList){
             if(p.yCoordinate == x && p.yCoordinate == y && p.playerNumber == playerNumber)
                 return p;
         }
@@ -85,13 +85,32 @@ public class Board {
         return false;
     }
 
-    public void moveOnBoard(int x, int y, int playerNumber, int newX, int newY){
+    public void moveOnBoard(int x, int y, int newX, int newY){
 
-        checkIfClickOnPlayerPawn(x,y,playerNumber).movePawn(newX,newY);
+
         board[x][y] = 0;
         board[newX][newY] = 1;
 
         System.out.println("Moved!!!!");
+    }
+
+    public String checkPossibleMoves(int x, int y, int playerNumber){
+
+        Pawn tempPawn;
+        int newX, newY;
+        String reply = null;
+
+        if((tempPawn = checkIfClickOnPlayerPawn( x,  y,  playerNumber)) != null){
+
+            newX = tempPawn.getX() - 2;
+            newY = tempPawn.getY();
+
+            if(checkIfPawnCanBeMoved(newX, newY))
+                reply = Integer.toString(newX) +":"+ Integer.toString(newY) +";";
+
+        }
+        return reply;
+
     }
 
 
