@@ -95,9 +95,9 @@ public class Board {
         System.out.println("Moved!!!!");
     }
 
-    public Boolean checkIfPawnCanMove (int x, int y, int newX, int newY){
+    public Boolean checkIfPawnCanMove (int y, int x, int newY, int newX){
 
-        checkIfClickOnPlayerPawn( x,y);
+        //checkIfClickOnPlayerPawn( x,y);
 
         if (board[newX][newY] != 0)
             return false;

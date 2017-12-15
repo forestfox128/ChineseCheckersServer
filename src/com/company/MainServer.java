@@ -95,9 +95,9 @@ public class MainServer {
 
         String[] dataArray;
         dataArray = messageClient.split(":");
-
+        board = new Board(6);
         if("startGame".equals(dataArray[0])){
-            board = new Board(6);
+
         }
 
         if("move".equals(dataArray[0])){
