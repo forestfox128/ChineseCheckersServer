@@ -100,10 +100,10 @@ public class MainServer {
             board = new Board(6);
         }
 
-        if("meve".equals(dataArray[0])){
+        if("move".equals(dataArray[0])){
 
 
-            out.println(board.checkPossibleMoves(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3])));
+            out.println((board.checkIfPawnCanMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3]) ,Integer.parseInt(dataArray[4]))).toString());
         }
 
 

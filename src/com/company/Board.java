@@ -68,10 +68,10 @@ public class Board {
 
     }
 
-    public Pawn checkIfClickOnPlayerPawn(int x, int y, int playerNumber){
+    public Pawn checkIfClickOnPlayerPawn(int x, int y){
 
         for(Pawn p : pawnsList){
-            if(p.yCoordinate == x && p.yCoordinate == y && p.playerNumber == playerNumber)
+            if(p.yCoordinate == x && p.yCoordinate == y )
                 return p;
         }
         return null;
@@ -88,28 +88,52 @@ public class Board {
     public void moveOnBoard(int x, int y, int newX, int newY){
 
 
+
         board[x][y] = 0;
         board[newX][newY] = 1;
 
         System.out.println("Moved!!!!");
     }
 
-    public String checkPossibleMoves(int x, int y, int playerNumber){
+    public Boolean checkIfPawnCanMove (int x, int y, int newX, int newY){
 
-        Pawn tempPawn;
-        int newX, newY;
-        String reply = null;
+        checkIfClickOnPlayerPawn( x,y);
 
-        if((tempPawn = checkIfClickOnPlayerPawn( x,  y,  playerNumber)) != null){
+        if (board[newX][newY] != 0)
+            return false;
 
-            newX = tempPawn.getX() - 2;
-            newY = tempPawn.getY();
-
-            if(checkIfPawnCanBeMoved(newX, newY))
-                reply = Integer.toString(newX) +":"+ Integer.toString(newY) +";";
-
+        if (newX == x - 1 && newY == y - 1){
+            moveOnBoard(x,y,newX,newY);
+            return true;
         }
-        return reply;
+
+        else if (newX == x + 1 && newY == y - 1)
+        {
+            moveOnBoard(x,y,newX,newY);
+            return true;
+        }
+        else if (newX == x + 1 && newY == y + 1)
+        {
+            moveOnBoard(x,y,newX,newY);
+            return true;
+        }
+        else if (newX == x - 1 && newY == y + 1)
+        {
+            moveOnBoard(x,y,newX,newY);
+            return true;
+        }
+        else if (newX == x - 2 && newY == y)
+        {
+            moveOnBoard(x,y,newX,newY);
+            return true;
+        }
+        else if (newX == x + 2 && newY == y)
+        {
+            moveOnBoard(x,y,newX,newY);
+            return true;
+        }
+
+        return false;
 
     }
 
