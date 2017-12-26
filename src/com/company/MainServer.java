@@ -23,7 +23,7 @@ public class MainServer {
 
         try {
 
-            server = new ServerSocket(9999);
+            server = new ServerSocket(6008);
             serverWindow = new ServerGUI();
             serverWindow.startServer();
 
@@ -62,7 +62,7 @@ public class MainServer {
             }
 
             catch (IOException e) {
-                System.out.println("Cannot connect");
+                System.out.println("Cannot connect null message");
                 System.exit(-1);
             }
         }
