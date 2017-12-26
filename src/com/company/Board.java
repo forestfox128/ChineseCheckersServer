@@ -98,26 +98,50 @@ public class Board {
         if (newBoardArray[x-1][y-1] == 0){
             possMove = Integer.toString(x-1) +":"+Integer.toString(y-1);
         }
+        else if (newBoardArray[x-1][y-1] == 1){
+            if(newBoardArray[x-2][y-2] == 0)
+                possMove = Integer.toString(x-2) +":"+Integer.toString(y-2);
+        }
 
         if (newBoardArray[x+1][y-1] == 0) {
             possMove = possMove +":"+ Integer.toString(x+1) +":"+Integer.toString(y-1);
 
         }
+        else if (newBoardArray[x+1][y-1] == 1){
+            if(newBoardArray[x+2][y-2] == 0)
+                possMove = possMove +":"+Integer.toString(x+2) +":"+Integer.toString(y-2);
+        }
         if (newBoardArray[x-1][y+1] == 0) {
             possMove = possMove +":"+ Integer.toString(x-1) +":"+Integer.toString(y+1);
 
+        }
+        else if (newBoardArray[x-1][y+1] == 1){
+            if(newBoardArray[x-2][y+2] == 0)
+                possMove = possMove +":"+Integer.toString(x-2) +":"+Integer.toString(y+2);
         }
         if (newBoardArray[x+1][y+1] == 0) {
             possMove = possMove +":"+ Integer.toString(x+1) +":"+Integer.toString(y+1);
 
         }
+        else if (newBoardArray[x+1][y+1] == 1){
+            if(newBoardArray[x+2][y+2] == 0)
+                possMove = possMove +":"+Integer.toString(x+2) +":"+Integer.toString(y+2);
+        }
         if (newBoardArray[x][y+2] == 0) {
             possMove = possMove +":"+ Integer.toString(x) +":"+Integer.toString(y+2);
 
         }
+        else if (newBoardArray[x][y+2] == 1){
+            if(newBoardArray[x][y+4] == 0)
+                possMove = possMove +":"+ Integer.toString(x) +":"+Integer.toString(y+4);
+        }
         if (newBoardArray[x][y-2] == 0) {
             possMove = possMove +":"+ Integer.toString(x) +":"+Integer.toString(y-2);
 
+        }
+        else if (newBoardArray[x][y-2] == 1){
+            if(newBoardArray[x][y-4] == 0)
+                possMove = possMove +":"+Integer.toString(x) +":"+Integer.toString(y-4);
         }
 
         return possMove;
