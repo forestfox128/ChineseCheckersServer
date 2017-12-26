@@ -20,11 +20,13 @@ public class MainServer {
 
 
     private MainServer() {
+
         try {
 
             server = new ServerSocket(9999);
             serverWindow = new ServerGUI();
             serverWindow.startServer();
+
         }
 
         catch (IOException e) {
@@ -55,13 +57,7 @@ public class MainServer {
             try {
 
                 messageClient = in.readLine();
-//                serverWindow.addClient(messageClient);
-
                 handleInfoFromClient(messageClient);
-
-                //singleton????
-                //board = new Board(6);
-
 
             }
 
@@ -89,25 +85,32 @@ public class MainServer {
         MainServer server = new MainServer();
         server.listenSocket();
 
+
     }
 
     private void handleInfoFromClient(String messageClient){
 
         String[] dataArray;
         dataArray = messageClient.split(":");
-        board = new Board(6);
+
         if("startGame".equals(dataArray[0])){
+
+            board = new Board(6);
+            out.println("connected");
+            users.add(dataArray[1]);
+            serverWindow.addClient(dataArray[1]);
 
         }
 
         if("move".equals(dataArray[0])){
 
-
-            out.println((board.checkIfPawnCanMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3]) ,Integer.parseInt(dataArray[4]))).toString());
+            boolean test = board.checkIfPawnCanMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3]) ,Integer.parseInt(dataArray[4]));
+           // boolean test = board.checkIfPawnCanMove(8, 12, 7 ,11);
+            out.println(Boolean.toString(test));
+            System.out.println(test);
         }
 
 
         //checking the action which client expect and return
     }
 }
-
