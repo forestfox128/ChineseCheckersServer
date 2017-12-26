@@ -102,12 +102,17 @@ public class MainServer {
 
         }
 
+        if("checkMoves".equals(dataArray[0])){
+
+            String test = board.possPawnMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]));
+           // boolean test = board.checkIfPawnCanMove(8, 12, 7 ,11);
+            out.println(test);
+            System.out.println(test);
+        }
+
         if("move".equals(dataArray[0])){
 
-            boolean test = board.checkIfPawnCanMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]), Integer.parseInt(dataArray[3]) ,Integer.parseInt(dataArray[4]));
-           // boolean test = board.checkIfPawnCanMove(8, 12, 7 ,11);
-            out.println(Boolean.toString(test));
-            System.out.println(test);
+            board.moveOnBoard(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]), Integer.parseInt(dataArray[4]));
         }
 
 

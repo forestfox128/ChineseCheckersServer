@@ -91,47 +91,36 @@ public class Board {
     }
 
 
-    public Boolean checkIfPawnCanMove (int x, int y, int newX, int newY){
+    public String possPawnMove (int x, int y){
 
-        System.out.println(x+" "+y+" "+newX+" "+newY);
-        System.out.println((newBoardArray[newX][newY]));
+        String possMove = null;
 
-        if (newBoardArray[newX][newY] != 0){
-            return false;
-        }
-
-        if (newX == x - 1 && newY == y - 1){
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x-1][y-1] == 0){
+            possMove = Integer.toString(x-1) +":"+Integer.toString(y-1);
         }
 
-        else if (newX == x + 1 && newY == y - 1)
-        {
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x+1][y-1] == 0) {
+            possMove = possMove +":"+ Integer.toString(x+1) +":"+Integer.toString(y-1);
+
         }
-        else if (newX == x + 1 && newY == y + 1)
-        {
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x-1][y+1] == 0) {
+            possMove = possMove +":"+ Integer.toString(x-1) +":"+Integer.toString(y+1);
+
         }
-        else if (newX == x - 1 && newY == y + 1)
-        {
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x+1][y+1] == 0) {
+            possMove = possMove +":"+ Integer.toString(x+1) +":"+Integer.toString(y+1);
+
         }
-        else if (newX == x && newY == y -2)
-        {
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x][y+2] == 0) {
+            possMove = possMove +":"+ Integer.toString(x) +":"+Integer.toString(y+2);
+
         }
-        else if (newX == x && newY == y + 2)
-        {
-            moveOnBoard(x,y,newX,newY);
-            return true;
+        if (newBoardArray[x][y-2] == 0) {
+            possMove = possMove +":"+ Integer.toString(x) +":"+Integer.toString(y-2);
+
         }
 
-        return false;
+        return possMove;
 
     }
 
