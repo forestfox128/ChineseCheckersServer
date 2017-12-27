@@ -104,8 +104,8 @@ public class MainServer {
 
         if("checkMoves".equals(dataArray[0])){
 
-            String test = board.possPawnMove(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]));
-           // boolean test = board.checkIfPawnCanMove(8, 12, 7 ,11);
+            String test = board.possibleMoves(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]));
+           //String test = board.possibleMoves(8, 12);
             out.println(test);
             System.out.println(test);
         }
