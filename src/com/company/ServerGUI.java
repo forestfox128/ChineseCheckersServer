@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class ServerGUI {
@@ -59,10 +60,14 @@ public class ServerGUI {
         output1.setText("Server is running");
     }
 
-    public void addClient(String player){
+    public void addClient(ArrayList<String> player){
 
         output1.setText("New player logged");
-        output2.setText(player);
+        //output2.setText(player);
+
+        for(String p: player){
+            System.out.println(p);
+        }
     }
 }
 

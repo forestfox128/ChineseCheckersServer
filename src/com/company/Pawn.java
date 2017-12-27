@@ -10,11 +10,11 @@ public class Pawn {
     Board board;
 
 
-    public Pawn(int x, int y, int playerNumber, Board board){
+    public Pawn(int x, int y, int playerNumber){
         this.xCoordinate = x;
         this.yCoordinate = y;
         this.playerNumber = playerNumber;
-        this.board = board;
+        //this.board = board;
     }
 
     public int getX (){

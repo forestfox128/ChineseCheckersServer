@@ -82,6 +82,9 @@ public class MainServer {
 
     public static void main(String[] args) {
 
+//        Board board = Board.getINSTANCE(6);
+//
+//        System.out.println(board.possibleMoves(3, 13));
         MainServer server = new MainServer();
         server.listenSocket();
 
@@ -95,12 +98,15 @@ public class MainServer {
 
         if("startGame".equals(dataArray[0])){
 
-            board = new Board(6);
+            System.out.println("New connection");
+            board = Board.getINSTANCE(6);//Integer.parseInt(dataArray[2]));
             out.println("connected");
             users.add(dataArray[1]);
-            serverWindow.addClient(dataArray[1]);
+            serverWindow.addClient(users);
 
         }
+
+
 
         if("checkMoves".equals(dataArray[0])){
 
