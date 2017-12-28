@@ -67,6 +67,7 @@ public class ServerGUI {
 
         for(String p: player){
             System.out.println(p);
+            output2.setText(p);
         }
     }
 }

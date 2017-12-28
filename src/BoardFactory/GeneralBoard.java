@@ -14,7 +14,6 @@ public abstract class GeneralBoard {
 
         if (newBoardArray[x-1][y-1] == 0){
             possMove = Integer.toString(x-1) +":"+Integer.toString(y-1);
-            System.out.println("OKKKKK");
         }
         else if (newBoardArray[x-1][y-1] == 1){
             int tempX = x;

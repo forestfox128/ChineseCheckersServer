@@ -3,7 +3,7 @@ package com.company;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+
 
 public class MainServer {
 
@@ -12,116 +12,48 @@ public class MainServer {
     private BufferedReader in = null;
     private static PrintWriter out = null;
     private String messageClient = "";
-    private ServerGUI serverWindow;
+    private static ServerGUI serverWindow;
     private ArrayList<String> users = new ArrayList<>();
     private Board board;
     private Players player;
+    private static final int PORT = 6008;
 
 
 
-    private MainServer() {
-
-        try {
-
-            server = new ServerSocket(6008);
-            serverWindow = new ServerGUI();
-            serverWindow.startServer();
-
-        }
-
-        catch (IOException e) {
-            System.out.println("Could not listen on port 6666"); System.exit(-1);
-        }
+    public MainServer() {
+        serverWindow = new ServerGUI();
+        serverWindow.startServer();
     }
 
-    private void listenSocket() {
-
-        try {
-            client = server.accept();
-
-        } catch (IOException e) {
-            System.out.println("Accept failed: 6587");
-            System.exit(-1);
-        }
-        try {
-            in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            out = new PrintWriter(client.getOutputStream(), true);
-
-        } catch (IOException e) {
-            System.out.println("Accept failed: 6666");
-            System.exit(-1);
-        }
-
-        while (messageClient != null) {
-
-            try {
-
-                messageClient = in.readLine();
-                handleInfoFromClient(messageClient);
-
-            }
-
-            catch (IOException e) {
-                System.out.println("Cannot connect null message");
-                System.exit(-1);
-            }
-        }
-    }
-
-    protected void finalize() {
-        try {
-            in.close();
-            out.close();
-            client.close();
-            server.close();
-        }
-        catch (IOException e) {
-            System.out.println("Could not close."); System.exit(-1);
-        }
+    public static ServerGUI getServerWindow() {
+        return serverWindow;
     }
 
     public static void main(String[] args) {
 
-//        Board board = Board.getINSTANCE(6);
-//
-//        System.out.println(board.possibleMoves(3, 13));
-        MainServer server = new MainServer();
-        server.listenSocket();
 
+//        server.listenSocket();
 
+        ServerSocket serverSocket = null;
+        Socket socket = null;
+
+        try {
+            serverSocket = new ServerSocket(PORT);
+            new MainServer();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        while (true) {
+            try {
+                socket = serverSocket.accept();
+            } catch (IOException e) {
+                System.out.println("I/O error: " + e);
+            }
+            // new thread for a client
+            new ClientThread(socket).start();
+        }
     }
 
-    private void handleInfoFromClient(String messageClient){
-
-        String[] dataArray;
-        dataArray = messageClient.split(":");
-
-        if("startGame".equals(dataArray[0])){
-
-            System.out.println("New connection");
-            board = Board.getINSTANCE(6);//Integer.parseInt(dataArray[2]));
-            out.println("connected");
-            users.add(dataArray[1]);
-            serverWindow.addClient(users);
-
-        }
-
-
-
-        if("checkMoves".equals(dataArray[0])){
-
-            String test = board.possibleMoves(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]));
-           //String test = board.possibleMoves(8, 12);
-            out.println(test);
-            System.out.println(test);
-        }
-
-        if("move".equals(dataArray[0])){
-
-            board.moveOnBoard(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]), Integer.parseInt(dataArray[4]));
-        }
-
-
-        //checking the action which client expect and return
-    }
 }
