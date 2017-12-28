@@ -11,6 +11,7 @@ public class ClientThread extends Thread {
     private BufferedReader in = null;
     private PrintWriter out = null;
     private ArrayList<String> users = new ArrayList<>();
+    //private ArrayList<Player> players = new ArrayList<>();
     private Board board;
     private Players player;
 
@@ -59,10 +60,11 @@ public class ClientThread extends Thread {
         if("startGame".equals(dataArray[0])){
 
             System.out.println("New connection");
-            board = Board.getINSTANCE(6);//Integer.parseInt(dataArray[2]));
+            //board = Board.getINSTANCE(6);//Integer.parseInt(dataArray[2]));
             out.println("connected");
             users.add(dataArray[1]);
             serverWindow.addClient(users);
+
 
         }
 

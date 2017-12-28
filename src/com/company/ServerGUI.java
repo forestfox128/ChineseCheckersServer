@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
@@ -12,7 +13,15 @@ public class ServerGUI {
 
     private Label output1;
     private Label output2;
+    private JComboBox playerNumberChoose;
+    private String [] playerNumber = {"2","3","4","6"};
+    private String playerNumberSelection = null;
+    private JComboBox bootNumberChoose;
+    private String [] bootNumber = {"1","2","3","4","5"};
+    private String bootNumberSelection = null;
     private Label listPlayers;
+    private Label pN;
+    private Label bN;
     private Label socket;
 
     //private Socket socket = null;
@@ -31,6 +40,46 @@ public class ServerGUI {
         frame.setSize(800, 450);
         frame.setTitle("ChineseCheckersServer");
         frame.setFont(new Font ("SansSerif",Font.PLAIN, 18));
+
+        playerNumberChoose = new JComboBox(playerNumber);
+        playerNumberChoose.setBounds(230,30,120,30);
+        playerNumberChoose.setVisible(true);
+
+        playerNumberChoose.addActionListener((ActionEvent event) -> {
+            if(playerNumberSelection == null) {
+                playerNumberSelection = playerNumberChoose.getSelectedItem().toString();
+                System.out.println(playerNumberSelection);
+                playerNumberChoose.setEnabled(false);
+                createGameManager();
+            }
+            else{
+                System.out.println("Cannot do it");
+            }
+        });
+
+        pN = new Label("Number of players: ");
+        pN.setFont(new Font ("SansSerif",Font.PLAIN, 16));
+        pN.setBounds(30,20,150,35);
+
+        bootNumberChoose = new JComboBox(bootNumber);
+        bootNumberChoose.setBounds(530,30,120,30);
+        bootNumberChoose.setVisible(true);
+
+        bootNumberChoose.addActionListener((ActionEvent event) -> {
+            if(bootNumberSelection == null) {
+                bootNumberSelection = bootNumberChoose.getSelectedItem().toString();
+                System.out.println(bootNumberSelection);
+                bootNumberChoose.setEnabled(false);
+                createGameManager();
+            }
+            else{
+                System.out.println("Cannot");
+            }
+        });
+
+        bN = new Label("Number of players: ");
+        bN.setFont(new Font ("SansSerif",Font.PLAIN, 16));
+        bN.setBounds(360,20,150,35);
 
         socket = new Label("Status");
         socket.setFont(new Font ("SansSerif",Font.PLAIN, 16));
@@ -54,6 +103,10 @@ public class ServerGUI {
         frame.add(output2);
         frame.add(listPlayers);
         frame.add(socket);
+        frame.add(playerNumberChoose);
+        frame.add(pN);
+        frame.add(bootNumberChoose);
+        frame.add(bN);
     }
 
     public void startServer(){
@@ -70,5 +123,17 @@ public class ServerGUI {
             output2.setText(p);
         }
     }
+
+    public void createGameManager(){
+
+        if(bootNumberSelection != null && playerNumberSelection != null){
+
+            GameManager gameManager = new GameManager(playerNumberSelection,bootNumberSelection);
+        }
+
+
+    }
+
+
 }
 
