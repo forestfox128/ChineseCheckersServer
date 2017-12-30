@@ -72,7 +72,7 @@ public class SixPlayerBoard extends GeneralBoard {
     }
 
     @Override
-    public void givePawnstoPlayers() {
+    public void givePawnsToPlayers() {
 
         players.add(player = new Player(1, pawnsList1));
         players.add(player = new Player(2, pawnsList2));
