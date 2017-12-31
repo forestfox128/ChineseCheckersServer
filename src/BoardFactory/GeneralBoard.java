@@ -15,6 +15,11 @@ public abstract class GeneralBoard {
         return possMove;
     }
 
+    public int getPlayer(int x, int y)
+    {
+        return newBoardArray[x][y];
+    }
+
     private boolean isValidField(int x, int y)
     {
         if(x < 0 || x > 16)

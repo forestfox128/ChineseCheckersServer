@@ -79,6 +79,23 @@ public class ClientThread extends Thread {
             board.moveOnBoard(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]), Integer.parseInt(dataArray[4]));
         }
 
+        if("getBoard".equals(dataArray[0])){
+
+            board = Board.getINSTANCE(6);
+
+            String msg = "";
+            for(int i=0; i<17; i++)
+            {
+                for(int j=0; j<25; j++)
+                {
+                    msg = msg + "," + Integer.toString(i) + ":" + Integer.toString(j) + ":"
+                            + Integer.toString(board.getPlayer(i, j));
+                }
+            }
+            System.out.println(msg);
+            out.println(msg);
+        }
+
 
         //checking the action which client expect and return
     }

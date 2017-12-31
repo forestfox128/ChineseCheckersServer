@@ -65,6 +65,11 @@ public class Board {
         return generalBoard.possibleMoves(x,y);
     }
 
+    public int getPlayer(int x, int y)
+    {
+        return generalBoard.getPlayer(x, y);
+    }
+
 
 //    public String possibleMoves(int x, int y){
 //
