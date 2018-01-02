@@ -59,7 +59,7 @@ public class ClientThread extends Thread {
         if("startGame".equals(dataArray[0])){
 
             System.out.println("New connection");
-            board = Board.getINSTANCE(6);//Integer.parseInt(dataArray[2]));
+            board = Board.getINSTANCE();
             out.println("connected");
             users.add(dataArray[1]);
             serverWindow.addClient(users);
@@ -81,7 +81,7 @@ public class ClientThread extends Thread {
 
         if("getBoard".equals(dataArray[0])){
 
-            board = Board.getINSTANCE(6);
+            board = Board.getINSTANCE();
 
             String msg = "";
             for(int i=0; i<17; i++)

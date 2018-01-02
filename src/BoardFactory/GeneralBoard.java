@@ -24,7 +24,7 @@ public abstract class GeneralBoard {
     {
         if(x < 0 || x > 16)
             return false;
-        if(y < 0 || y > 34)
+        if(y < 0 || y > 24)
             return false;
         return true;
     }
@@ -116,6 +116,7 @@ public abstract class GeneralBoard {
             }
         }
 
+        System.out.println(possMove);
         return possMove;
 
     }
