@@ -129,7 +129,7 @@ public class ServerGUI {
     }
     public static int givePlayerNumberSelection(){
         //return Integer.parseInt(playerNumberSelection);
-        return 6;
+        return 2;
     }
 
     public void createGameManager(){

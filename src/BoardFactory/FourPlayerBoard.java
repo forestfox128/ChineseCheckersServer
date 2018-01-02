@@ -18,6 +18,7 @@ public class FourPlayerBoard extends GeneralBoard{
 
                     if ((i == 0 && j == 12) || (i == 1 && (j == 11 || j == 13)) || (i == 2 && (j == 10 || j == 12 || j == 14)) || (i == 3 && (j == 9 || j == 11 || j == 13 || j == 15))) {
                         newBoardArray[i][j] = 1;
+                        playerArray[i][j] = 1;
                         //pawnsList.add(pawn = new Pawn(i, j, 1,this));
                     }
                     if ((i == 7 && j == 3) || (i == 6 && (j == 2 || j == 4)) || (i == 5 && (j == 1 || j == 3 || j == 5)) || (i == 4 && (j == 0 || j == 2 || j == 4 || j == 6))) {
@@ -25,10 +26,12 @@ public class FourPlayerBoard extends GeneralBoard{
                     }
                     if ((i == 9 && j == 3) || (i == 10 && (j == 2 || j == 4)) || (i == 11 && (j == 1 || j == 3 || j == 5)) || (i == 12 && (j == 0 || j == 2 || j == 4 || j == 6))) {
                         newBoardArray[i][j] = 1;
+                        playerArray[i][j] = 4;
                         //pawnsList.add(pawn = new Pawn(i, j, 5,this));
                     }
                     if ((i == 16 && j == 12) || (i == 15 && (j == 11 || j == 13)) || (i == 14 && (j == 10 || j == 12 || j == 14)) || (i == 13 && (j == 9 || j == 11 || j == 13 || j == 15))) {
                         newBoardArray[i][j] = 1;
+                        playerArray[i][j] = 3;
                         //pawnsList.add(pawn = new Pawn(i, j, 4,this));
                     }
                     if ((i == 9 && j == 21) || (i == 10 && (j == 20 || j == 22)) || (i == 11 && (j == 19 || j == 21 || j == 23)) || (i == 12 && (j == 18 || j == 20 || j == 22 || j == 24))) {
@@ -36,6 +39,7 @@ public class FourPlayerBoard extends GeneralBoard{
                     }
                     if ((i == 7 && j == 21) || (i == 6 && (j == 20 || j == 22)) || (i == 5 && (j == 19 || j == 21 || j == 23)) || (i == 4 && (j == 18 || j == 20 || j == 22 || j == 24))) {
                         newBoardArray[i][j] = 1;
+                        playerArray[i][j] = 2;
                         //pawnsList.add(pawn = new Pawn(i, j, 2,this));
                     }
 

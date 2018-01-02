@@ -12,17 +12,21 @@ public class ClientThread extends Thread {
     private PrintWriter out = null;
     private ArrayList<String> users = new ArrayList<>();
     private Board board;
-    private Players player;
+    private int playerID;
 
 
-    public ClientThread(Socket clientSocket) {
+
+
+    public ClientThread(Socket clientSocket, int playerID) {
         this.socket = clientSocket;
+        this.playerID = playerID;
     }
 
     public void run() {
 
 
         try {
+
             inp = socket.getInputStream();
             in = new BufferedReader(new InputStreamReader(inp));
             out = new PrintWriter(socket.getOutputStream(), true);
@@ -48,6 +52,11 @@ public class ClientThread extends Thread {
         }
     }
 
+    public String sendInfo(String message){
+
+        return message;
+    }
+
 
     public void handleInfoFromClient(String messageClient){
 
@@ -58,12 +67,20 @@ public class ClientThread extends Thread {
 
         if("startGame".equals(dataArray[0])){
 
-            System.out.println("New connection");
-            board = Board.getINSTANCE();
-            out.println("connected");
-            users.add(dataArray[1]);
-            serverWindow.addClient(users);
 
+                System.out.println("New connection");
+                board = Board.getINSTANCE();
+                out.println("connected");
+                users.add(dataArray[1]);
+                serverWindow.addClient(users);
+        }
+
+        if("enoughPlayers".equals(dataArray[0])){
+
+            if(ServerGUI.givePlayerNumberSelection() == GameManager.getPlayersNumber())
+                out.println("Game start");
+            else
+                out.println("Not enough players");
         }
 
         if("checkMoves".equals(dataArray[0])){

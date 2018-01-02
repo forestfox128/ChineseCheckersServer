@@ -6,13 +6,12 @@ import java.util.ArrayList;
 
 public class Board {
 
-    //public int [][] newBoardArray = new int[17][25];
+
     private int playersNumber;
 
     private ArrayList<Pawn> pawnsList = new ArrayList<Pawn>();
     private Pawn pawn;
     private static Board INSTANCE;
-    //CreateBoard createBoard;
     private GeneralBoard generalBoard;
 
     private Board(){

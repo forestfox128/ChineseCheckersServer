@@ -4,6 +4,8 @@ public abstract class GeneralBoard {
 
     public int [][] newBoardArray = new int[17][25];
 
+    public int [][] playerArray = new int [17][25];
+
     public abstract void createNewBoard();
 
     public abstract void givePawnsToPlayers();
@@ -17,7 +19,7 @@ public abstract class GeneralBoard {
 
     public int getPlayer(int x, int y)
     {
-        return newBoardArray[x][y];
+        return playerArray[x][y];
     }
 
     private boolean isValidField(int x, int y)

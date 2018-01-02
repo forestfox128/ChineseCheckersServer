@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.security.ntlm.Client;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -7,18 +9,13 @@ import java.util.ArrayList;
 
 public class MainServer {
 
-    private ServerSocket server = null;
-    private Socket client = null;
-    private BufferedReader in = null;
-    private static PrintWriter out = null;
-    private String messageClient = "";
     private static ServerGUI serverWindow;
-    private ArrayList<String> users = new ArrayList<>();
-    private Board board;
-    private Players player;
     private static final int PORT = 6008;
-
-
+    private static ArrayList<Player> players = new ArrayList<>();
+    private static ArrayList<ClientThread> clients = new ArrayList<>();
+    private static ClientThread client;
+    private static GameManager game;
+    private static int playerLimit = 0;
 
     public MainServer() {
         serverWindow = new ServerGUI();
@@ -31,8 +28,6 @@ public class MainServer {
 
     public static void main(String[] args) {
 
-
-//        server.listenSocket();
 
         ServerSocket serverSocket = null;
         Socket socket = null;
@@ -51,9 +46,34 @@ public class MainServer {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
+
             // new thread for a client
-            new ClientThread(socket).start();
+            if(playerLimit < ServerGUI.givePlayerNumberSelection()) {
+                client = new ClientThread(socket, playerLimit);
+                client.start();
+                clients.add(client);
+                addNewPlayer(playerLimit, client);
+            }
+            else if (playerLimit == ServerGUI.givePlayerNumberSelection()){
+                startGame();
+            }
+            else {
+                System.out.println("Lack of place for player");
+            }
+            playerLimit++;
         }
     }
 
+    public static void addNewPlayer(int playerID, ClientThread client){
+        players.add(new Player(playerID,client));
+
+    }
+
+    public static ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public static void startGame(){
+        game = new GameManager();
+    }
 }
