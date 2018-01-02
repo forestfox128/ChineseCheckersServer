@@ -76,4 +76,8 @@ public class MainServer {
     public static void startGame(){
         game = new GameManager();
     }
+
+    public static ArrayList<ClientThread> getClients() {
+        return clients;
+    }
 }

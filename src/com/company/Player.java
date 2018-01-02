@@ -18,6 +18,16 @@ public class Player {
     }
 
     public boolean checkIfYourPawn(int x, int y){
-        return true;
+
+        if(client.getPlayerID() == playerID) {
+            for (Pawn pawn : pawnList)
+                if (pawn.getX() == x && pawn.getY() == y)
+                    return true;
+        }
+        return false;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 }

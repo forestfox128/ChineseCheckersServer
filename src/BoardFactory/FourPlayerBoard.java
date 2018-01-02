@@ -58,8 +58,5 @@ public class FourPlayerBoard extends GeneralBoard{
 
     }
 
-    @Override
-    public void givePawnsToPlayers() {
 
-    }
 }

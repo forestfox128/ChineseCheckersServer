@@ -53,8 +53,4 @@ public class TwoPlayerBoard extends GeneralBoard{
             }
     }
 
-    @Override
-    public void givePawnsToPlayers() {
-
-    }
 }

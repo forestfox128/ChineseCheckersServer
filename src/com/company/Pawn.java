@@ -4,9 +4,9 @@ import java.awt.*;
 
 public class Pawn {
 
-    int xCoordinate;
-    int yCoordinate;
-    int playerNumber;
+    private int xCoordinate;
+    private int yCoordinate;
+    private int playerNumber;
     Board board;
 
 

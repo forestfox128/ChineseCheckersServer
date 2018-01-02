@@ -22,6 +22,11 @@ public class ClientThread extends Thread {
         this.playerID = playerID;
     }
 
+
+    public int getPlayerID() {
+        return playerID;
+    }
+
     public void run() {
 
 
@@ -58,6 +63,7 @@ public class ClientThread extends Thread {
     }
 
 
+    //TODO: funkcja handleInfoFromClient idealnie nadaje się do przekształcenia w State
     public void handleInfoFromClient(String messageClient){
 
         String[] dataArray;
@@ -69,8 +75,7 @@ public class ClientThread extends Thread {
 
 
                 System.out.println("New connection");
-                board = Board.getINSTANCE();
-                out.println("connected");
+                out.println("connected"/*+":"+playerID*/);
                 users.add(dataArray[1]);
                 serverWindow.addClient(users);
         }
@@ -81,6 +86,26 @@ public class ClientThread extends Thread {
                 out.println("Game start");
             else
                 out.println("Not enough players");
+        }
+
+        if("checkIfYourTurn".equals(dataArray[0])){
+
+            int test = GameManager.getINSTANCE().checkTurn();
+            if(test == Integer.parseInt(dataArray[1]))
+                out.println("true");
+            else out.println("it is" + test +"turn");
+        }
+
+        if("checkPlayerPawn".equals(dataArray[0])){
+
+           if(playerID == Integer.parseInt(dataArray[1])){
+               for(Player p: MainServer.getPlayers()){
+                   out.println(p.checkIfYourPawn(Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3])));
+               }
+           }
+           else out.println("not your turn");
+
+
         }
 
         if("checkMoves".equals(dataArray[0])){
@@ -94,6 +119,8 @@ public class ClientThread extends Thread {
         if("move".equals(dataArray[0])){
 
             board.moveOnBoard(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]), Integer.parseInt(dataArray[4]));
+            System.out.println("Moved");
+            GameManager.getINSTANCE().giveLastPlayer(Integer.parseInt(dataArray[5]));
         }
 
         if("getBoard".equals(dataArray[0])){

@@ -16,7 +16,6 @@ public class Board {
 
     private Board(){
         initializeBoard();
-
     }
 
     //SINGLETON
@@ -48,15 +47,6 @@ public class Board {
         }
 
         System.out.println("Moved!!!!");
-    }
-
-    public Pawn findPawn(int x, int y){
-
-        for(Pawn p :pawnsList){
-            if(p.getX() == x && p.getY() == y)
-                return p;
-        }
-        return null;
     }
 
     public String possibleMoves(int x, int y){

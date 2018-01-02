@@ -8,7 +8,7 @@ public abstract class GeneralBoard {
 
     public abstract void createNewBoard();
 
-    public abstract void givePawnsToPlayers();
+   // public abstract void givePawnsToPlayers();
 
     private String appendMoves(String possMove, int x, int y)
     {
