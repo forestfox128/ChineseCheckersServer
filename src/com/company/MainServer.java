@@ -15,7 +15,7 @@ public class MainServer {
     private static ArrayList<ClientThread> clients = new ArrayList<>();
     private static ClientThread client;
     private static GameManager game;
-    private static int playerLimit = 0;
+    private static int playerLimit = 1;
 
     public MainServer() {
         serverWindow = new ServerGUI();
@@ -48,7 +48,7 @@ public class MainServer {
             }
 
             // new thread for a client
-            if(playerLimit < ServerGUI.givePlayerNumberSelection()) {
+            if(playerLimit <= ServerGUI.givePlayerNumberSelection()) {
                 client = new ClientThread(socket, playerLimit);
                 client.start();
                 clients.add(client);
