@@ -127,6 +127,7 @@ public class ServerGUI {
     public static int giveBootNumberSelection(){
         return Integer.parseInt(bootNumberSelection);
     }
+
     public static int givePlayerNumberSelection(){
         //return Integer.parseInt(playerNumberSelection);
         return 2;

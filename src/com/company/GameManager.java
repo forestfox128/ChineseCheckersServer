@@ -40,6 +40,7 @@ public class GameManager {
     }
 
     public int checkTurn(){
+
         int numberOfPlayers = getPlayersNumber();
 
         return lastPlayer % numberOfPlayers + 1;
@@ -73,13 +74,33 @@ public class GameManager {
                         return true;
                     }
                     else return false;
+                    break;
 
             case 2:
+                int j = 0;
                 for(Pawn p: board.getPawnsList())
                     if(p.getPlayerNumber() == currentPlayerID && p.getX() == 0 && p.getX() == 12){
-                        // sprawdzamy dalej czy wygrał
+                        for(Pawn pw: board.getPawnsList())
+                            if(p.getPlayerNumber() == currentPlayerID){
+                                checkXArray[j] = p.getX() + p.getY();
+                                //checkYArray[i] = p.getY();
+                                j++;
+                            }
+                        for(int k = 0; k < 10 ; k++){
+                            if(checkXArray[k] == 111 || checkXArray[k] == 113 || checkXArray[k] == 210 || checkXArray[k] == 212
+                                    || checkXArray[k] == 214 || checkXArray[k] == 39 || checkXArray[k] == 311 || checkXArray[k] == 313
+                                    || checkXArray[k] == 315){
+                                //do nothing
+                            }
+
+                            else return false;
+                        }
+                        return true;
                     }
                     else return false;
+                break;
+
+                default: return false;
         }
 
         return false;

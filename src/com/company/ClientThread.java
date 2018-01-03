@@ -75,7 +75,7 @@ public class ClientThread extends Thread {
 
 
                 System.out.println("New connection");
-                out.println("connected"/*+":"+playerID*/);
+                out.println("connected"+":"+playerID);
                 users.add(dataArray[1]);
                 serverWindow.addClient(users);
         }
@@ -93,20 +93,19 @@ public class ClientThread extends Thread {
             int test = GameManager.getINSTANCE().checkTurn();
             if(test == Integer.parseInt(dataArray[1]))
                 out.println("true");
-            else out.println("it is" + test +"turn");
+            else out.println(test);
         }
 
-        if("checkPlayerPawn".equals(dataArray[0])){
+//        if("checkPlayerPawn".equals(dataArray[0])){
+//
+//           if(playerID == Integer.parseInt(dataArray[1])){
+//               for(Player p: MainServer.getPlayers()){
+//                   out.println(p.checkIfYourPawn(Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3])));
+//               }
+//           }
+//           else out.println("not your turn");
+//        }
 
-           if(playerID == Integer.parseInt(dataArray[1])){
-               for(Player p: MainServer.getPlayers()){
-                   out.println(p.checkIfYourPawn(Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3])));
-               }
-           }
-           else out.println("not your turn");
-
-
-        }
 
         if("checkMoves".equals(dataArray[0])){
 
@@ -121,6 +120,7 @@ public class ClientThread extends Thread {
             board.moveOnBoard(Integer.parseInt(dataArray[1]), Integer.parseInt(dataArray[2]),Integer.parseInt(dataArray[3]), Integer.parseInt(dataArray[4]));
             System.out.println("Moved");
             GameManager.getINSTANCE().giveLastPlayer(Integer.parseInt(dataArray[5]));
+            out.println("move");
         }
 
         if("getBoard".equals(dataArray[0])){
