@@ -45,6 +45,11 @@ public class Board {
             if(p.getX() == x && p.getY() == y)
                 p.movePawn(newX, newY);
         }
+        //System.out.println("xxd"+generalBoard.playerArray[x][y]);
+
+        generalBoard.playerArray[newX][newY] = generalBoard.playerArray[x][y] ;
+        //System.out.println(generalBoard.playerArray[newX][newY]);
+        generalBoard.playerArray[x][y] = 0;
 
         System.out.println("Moved!!!!");
     }

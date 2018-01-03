@@ -19,6 +19,7 @@ public abstract class GeneralBoard {
 
     public int getPlayer(int x, int y)
     {
+        System.out.println(playerArray[x][y]);
         return playerArray[x][y];
     }
 

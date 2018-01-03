@@ -51,6 +51,10 @@ public class TwoPlayerBoard extends GeneralBoard{
                 else if (i == 8 && j >= 4 && j <= 20 && j % 2 == 0)
                     newBoardArray[i][j] = 0;
             }
+
+//        for (int i = 0; i < 17; i++)
+//            for (int j = 0; j < 25; j++)
+//                System.out.println(playerArray[i][j]);
     }
 
 }
