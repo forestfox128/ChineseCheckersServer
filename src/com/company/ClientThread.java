@@ -136,8 +136,14 @@ public class ClientThread extends Thread {
                             + Integer.toString(board.getPlayer(i, j));
                 }
             }
+            System.out.println("mmm"+board.getPlayer(4,10));
             System.out.println(msg);
             out.println(msg);
+        }
+
+        if("checkIfEnd".equals(dataArray[0])){
+
+            GameManager.getINSTANCE().gameEnd(Integer.parseInt(dataArray[1]));
         }
 
 

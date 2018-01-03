@@ -9,7 +9,7 @@ public class Board {
 
     private int playersNumber;
 
-    private ArrayList<Pawn> pawnsList = new ArrayList<Pawn>();
+    //private ArrayList<Pawn> pawnsList = new ArrayList<Pawn>();
     private Pawn pawn;
     private static Board INSTANCE;
     private GeneralBoard generalBoard;
@@ -41,17 +41,17 @@ public class Board {
         generalBoard.newBoardArray[x][y] = 0;
         generalBoard.newBoardArray[newX][newY] = 1;
 
-        for(Pawn p :pawnsList){
+        for(Pawn p :getPawnsList()){
             if(p.getX() == x && p.getY() == y)
                 p.movePawn(newX, newY);
         }
-        //System.out.println("xxd"+generalBoard.playerArray[x][y]);
+        System.out.println("xxd"+generalBoard.playerArray[x][y]);
 
         generalBoard.playerArray[newX][newY] = generalBoard.playerArray[x][y] ;
-        //System.out.println(generalBoard.playerArray[newX][newY]);
+        System.out.println(generalBoard.playerArray[newX][newY]);
         generalBoard.playerArray[x][y] = 0;
 
-        System.out.println("Moved!!!!");
+        //System.out.println("Moved!!!!");
     }
 
     public String possibleMoves(int x, int y){
@@ -64,7 +64,7 @@ public class Board {
         return generalBoard.getPlayer(x, y);
     }
 
-
-
-
+    public ArrayList<Pawn> getPawnsList() {
+        return generalBoard.getPawnList();
+    }
 }

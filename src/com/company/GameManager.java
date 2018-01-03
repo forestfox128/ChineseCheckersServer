@@ -44,22 +44,43 @@ public class GameManager {
 
         return lastPlayer % numberOfPlayers + 1;
     }
-//
-//    public boolean manageGame(){
-//
-//        int i = 0;
-//        int numberOfPlayers = getPlayersNumber();
-//        while(true){
-//            int currentID = ;
-//
-//            if(gameEnd(currentID))
-//                break;
-//            i++;
-//        }
-//
-//    }
 
     public boolean gameEnd(int currentPlayerID){
+
+        int [] checkXArray = new int [10];
+        //int [] checkYArray = new int [10];
+
+        switch(currentPlayerID){
+            case 1:
+                int i = 0;
+                for(Pawn p: board.getPawnsList())
+                    if(p.getPlayerNumber() == currentPlayerID && p.getX() == 16 && p.getX() == 12){
+                        for(Pawn pw: board.getPawnsList())
+                            if(p.getPlayerNumber() == currentPlayerID){
+                                checkXArray[i] = p.getX() + p.getY();
+                                //checkYArray[i] = p.getY();
+                                i++;
+                            }
+                        for(int k = 0; k < 10 ; k++){
+                                if(checkXArray[k] == 913 || checkXArray[k] == 915 || checkXArray[k] == 917 || checkXArray[k] == 919
+                                        || checkXArray[k] == 1014 || checkXArray[k] == 1016 || checkXArray[k] == 1018 || checkXArray[k] == 1115
+                                        || checkXArray[k] == 1117){
+                                    //do nothing
+                                }
+
+                                else return false;
+                        }
+                        return true;
+                    }
+                    else return false;
+
+            case 2:
+                for(Pawn p: board.getPawnsList())
+                    if(p.getPlayerNumber() == currentPlayerID && p.getX() == 0 && p.getX() == 12){
+                        // sprawdzamy dalej czy wygrał
+                    }
+                    else return false;
+        }
 
         return false;
     }

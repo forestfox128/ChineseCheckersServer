@@ -1,10 +1,17 @@
 package BoardFactory;
 
+import com.company.Pawn;
+import com.sun.org.apache.xpath.internal.SourceTree;
+
+import java.util.ArrayList;
+
 public abstract class GeneralBoard {
 
     public int [][] newBoardArray = new int[17][25];
 
     public int [][] playerArray = new int [17][25];
+
+    public ArrayList<Pawn> pawnList = new ArrayList<>();
 
     public abstract void createNewBoard();
 
@@ -13,14 +20,17 @@ public abstract class GeneralBoard {
     private String appendMoves(String possMove, int x, int y)
     {
         possMove += Integer.toString(x) + ":" + Integer.toString(y) + ",";
-        System.out.println("dodano pole");
+        //System.out.println("dodano pole");
         return possMove;
     }
 
     public int getPlayer(int x, int y)
     {
-        System.out.println(playerArray[x][y]);
         return playerArray[x][y];
+    }
+
+    public ArrayList<Pawn> getPawnList() {
+        return pawnList;
     }
 
     private boolean isValidField(int x, int y)

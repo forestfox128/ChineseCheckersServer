@@ -30,6 +30,9 @@ public class Pawn {
         yCoordinate = newY;
     }
 
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
 }
 
 
