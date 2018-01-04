@@ -41,17 +41,13 @@ public class Board {
         generalBoard.newBoardArray[x][y] = 0;
         generalBoard.newBoardArray[newX][newY] = 1;
 
-        for(Pawn p :getPawnsList()){
+        for(Pawn p : getPawnsList()){
             if(p.getX() == x && p.getY() == y)
                 p.movePawn(newX, newY);
         }
-        System.out.println("xxd"+generalBoard.playerArray[x][y]);
 
         generalBoard.playerArray[newX][newY] = generalBoard.playerArray[x][y] ;
-        System.out.println(generalBoard.playerArray[newX][newY]);
         generalBoard.playerArray[x][y] = 0;
-
-        //System.out.println("Moved!!!!");
     }
 
     public String possibleMoves(int x, int y){
