@@ -9,13 +9,6 @@ public class SixPlayerBoard extends GeneralBoard {
 
     private int playerNumber;
 
-    public ArrayList<Player> players = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList1 = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList2 = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList3 = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList4 = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList5 = new ArrayList<>();
-    public ArrayList<Pawn> pawnsList6 = new ArrayList<>();
     Pawn pawn;
     Player player;
 
@@ -76,5 +69,7 @@ public class SixPlayerBoard extends GeneralBoard {
 
                 }
     }
+
+
 
 }

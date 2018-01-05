@@ -4,7 +4,7 @@ import com.company.Board;
 
 public class CreateBoard {
 
-    protected int playersNumber;
+    //protected int playersNumber;
 
     public static GeneralBoard createBoard(int playersNumber) {
         GeneralBoard product = null;

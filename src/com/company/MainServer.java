@@ -74,7 +74,7 @@ public class MainServer {
     }
 
     public static void startGame(){
-        game = new GameManager();
+        game = GameManager.getINSTANCE();
     }
 
     public static ArrayList<ClientThread> getClients() {

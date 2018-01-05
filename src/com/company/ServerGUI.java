@@ -15,7 +15,7 @@ public class ServerGUI {
     private Label output2;
     private JComboBox playerNumberChoose;
     private String [] playerNumber = {"2","3","4","6"};
-    private static String playerNumberSelection = null;
+    public static String playerNumberSelection = null;
     private JComboBox bootNumberChoose;
     private String [] bootNumber = {"1","2","3","4","5"};
     private static String bootNumberSelection = null;

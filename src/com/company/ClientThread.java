@@ -57,11 +57,6 @@ public class ClientThread extends Thread {
         }
     }
 
-    public String sendInfo(String message){
-
-        return message;
-    }
-
 
     //TODO: funkcja handleInfoFromClient idealnie nadaje się do przekształcenia w State
     public void handleInfoFromClient(String messageClient){

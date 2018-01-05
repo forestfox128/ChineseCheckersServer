@@ -13,7 +13,7 @@ public class GameManager {
 
     private static GameManager INSTANCE;
 
-    public GameManager(){
+    private GameManager(){
         startGame();
     }
 
@@ -28,7 +28,8 @@ public class GameManager {
 
     public static int getPlayersNumber(){
 
-        return players.size();
+        //return players.size();
+        return ServerGUI.givePlayerNumberSelection();
     }
 
     public void startGame(){
@@ -80,7 +81,7 @@ public class GameManager {
 
                 for (Pawn p : pawnList) {
                     //System.out.println("pawn X co " + p.getY());
-                    if (p.getPlayerNumber() != currentPlayerID && p.getX() != 16 && p.getY() != 12) {
+                    if (p.getPlayerNumber() != currentPlayerID || p.getX() != 16 || p.getY() != 12) {
                         return false;
                     } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 16 && p.getY() == 12) {
                         //System.out.println("almost win");
@@ -104,7 +105,7 @@ public class GameManager {
                 i = 0;
                 for (Pawn p : pawnList) {
                     //System.out.println("pawn X co " + p.getY());
-                    if (p.getPlayerNumber() != currentPlayerID && p.getX() != 11 && p.getY() != 0) {
+                    if (p.getPlayerNumber() != currentPlayerID || p.getX() != 11 || p.getY() != 0) {
                         return false;
                     } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 11 && p.getY() == 0) {
                         //System.out.println("almost win");
@@ -128,7 +129,7 @@ public class GameManager {
                 i = 0;
                 for (Pawn p : pawnList) {
                     //System.out.println("pawn X co " + p.getY());
-                    if (p.getPlayerNumber() != currentPlayerID && p.getX() != 4 && p.getY() != 0) {
+                    if (p.getPlayerNumber() != currentPlayerID || p.getX() != 4 || p.getY() != 0) {
                         return false;
                     } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 4 && p.getY() == 0) {
                         //System.out.println("almost win");
@@ -155,7 +156,7 @@ public class GameManager {
                     //System.out.println("pawn X co " + p.getY());
                     if (p.getPlayerNumber() != currentPlayerID && p.getX() != 0 && p.getY() != 12) {
                         return false;
-                    } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 0 && p.getY() == 12) {
+                    } else if (p.getPlayerNumber() == currentPlayerID || p.getX() == 0 || p.getY() == 12) {
                         //System.out.println("almost win");
                         for (Pawn pw : pawnList)
                             if (pw.getPlayerNumber() == currentPlayerID) {
@@ -177,7 +178,7 @@ public class GameManager {
                 i = 0;
                 for (Pawn p : pawnList) {
                     //System.out.println("pawn X co " + p.getY());
-                    if (p.getPlayerNumber() != currentPlayerID && p.getX() != 4 && p.getY() != 24) {
+                    if (p.getPlayerNumber() != currentPlayerID || p.getX() != 4 || p.getY() != 24) {
                         return false;
                     } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 4 && p.getY() == 24) {
                         //System.out.println("almost win");
@@ -200,7 +201,7 @@ public class GameManager {
             case 6: i = 0;
                 for (Pawn p : pawnList) {
                     //System.out.println("pawn X co " + p.getY());
-                    if (p.getPlayerNumber() != currentPlayerID && p.getX() != 11 && p.getY() != 24) {
+                    if (p.getPlayerNumber() != currentPlayerID || p.getX() != 11 || p.getY() != 24) {
                         return false;
                     } else if (p.getPlayerNumber() == currentPlayerID && p.getX() == 11 && p.getY() == 24) {
                         //System.out.println("almost win");

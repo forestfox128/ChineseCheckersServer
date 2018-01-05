@@ -29,6 +29,11 @@ public abstract class GeneralBoard {
         return playerArray[x][y];
     }
 
+    public int [][] getBoardArray()
+    {
+        return newBoardArray;
+    }
+
     public ArrayList<Pawn> getPawnList() {
         return pawnList;
     }
